@@ -38,16 +38,6 @@ public class Player : MonoBehaviour
         ApplyGravityToCC();
     }
 
-    // public void Move(Vector3 direction)
-    // {
-    //     transform.position += direction * speed * Time.deltaTime;
-    //     if (direction == Vector3.zero)
-    //     {
-    //         return;
-    //     }
-    //     transform.LookAt(transform.position + direction);
-    // }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Treasure"))
@@ -86,10 +76,6 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // public bool CreatureOnGround()
-    // {
-    //     return Physics.OverlapSphere(groundCheckTransform.position, 0.5f, jumpLayers).Length > 0;
-    // }
     Vector3 gravityVelocity = Vector3.zero;
 
     void ApplyGravityToCC()
@@ -102,6 +88,11 @@ public class Player : MonoBehaviour
         gravityVelocity.y += gravity * Time.deltaTime;
         characterController.Move(gravityVelocity * Time.deltaTime);
     }
+    public void MoveWithCC(Vector3 direction)
+    {
+        characterController.Move(direction * speed * Time.deltaTime);
+        transform.LookAt(transform.position + direction);
+    }
 
     // public void MoveWithRB(Vector3 direction)
     // {
@@ -109,12 +100,19 @@ public class Player : MonoBehaviour
 
     //     transform.LookAt(transform.position + direction);
     // }
-
-    public void MoveWithCC(Vector3 direction)
-    {
-        characterController.Move(direction * speed * Time.deltaTime);
-        transform.LookAt(transform.position + direction);
-    }
+    // public bool CreatureOnGround()
+    // {
+    //     return Physics.OverlapSphere(groundCheckTransform.position, 0.5f, jumpLayers).Length > 0;
+    // }
+    // public void Move(Vector3 direction)
+    // {
+    //     transform.position += direction * speed * Time.deltaTime;
+    //     if (direction == Vector3.zero)
+    //     {
+    //         return;
+    //     }
+    //     transform.LookAt(transform.position + direction);
+    // }
 
 
 
